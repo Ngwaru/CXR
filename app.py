@@ -87,8 +87,4 @@ if  __name__ == "__main__":
     app.run(use_reloader=True)
 
 
-# Next Steps
-# 1. Train on more data
-# 2. Augument the Data
-# 3. Create a model that identifies if an image is a CXR before predicting if TB is present or not 
-# 4. Send an Alert is TB is likely
+
