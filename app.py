@@ -1,6 +1,6 @@
+from tensorflow.keras import models
 from taipy.gui import Gui
 import numpy as np
-from tensorflow.keras import models
 from PIL import Image
 
 content = ""
@@ -59,9 +59,7 @@ index = """
 
 Upload a CXR to review
 
-<|{content}|file_selector|extensions= .png,.jpg, .jpeg|>
-
-
+<|{content}|file_selector|extensions= .png,.jpg,.jpeg|>
 
 <|{display_message}|>
 
@@ -87,4 +85,8 @@ if  __name__ == "__main__":
     app.run(use_reloader=True)
 
 
-
+# Next Steps
+# 1. Train on more data
+# 2. Augument the Data
+# 3. Create a model that identifies if an image is a CXR before predicting if TB is present or not 
+# 4. Send an Alert is TB is likely
