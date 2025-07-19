@@ -1,4 +1,5 @@
 import os
+import io
 from PIL import Image
 import numpy as np
 import streamlit as st
@@ -16,7 +17,7 @@ def process_image(path_to_image):
     img_data_normalized = img_data/255
     return img_data_normalized
 
-def is_xray(model, path_to_image):
+def is_xray_func(model, path_to_image):
     img_data_normalized = process_image(path_to_image)
     xray = model.predict(np.asarray([img_data_normalized]))
     print(xray)
@@ -27,7 +28,7 @@ def is_xray(model, path_to_image):
     
 def predict_image(model, path_to_image):
     img_data_normalized = process_image(path_to_image)
-    is_xray = is_xray(model_xray_or_not, path_to_image)
+    is_xray = is_xray_func(model_xray_or_not, path_to_image)
     if is_xray:
         img_data_normalized = process_image(path_to_image)
         prob_of_tb = model.predict(np.asarray([img_data_normalized]))
@@ -44,5 +45,8 @@ def predict_image(model, path_to_image):
         return prob_of_tb, message
     
 st.title("Normal vs TB CXR App")
-st.citations("This app predicts if a picture of a CXR is likely to be TB or not")
-uploaded_files = st.file_uploader("CXR Picture", accept_multiple_files=True)
+st.caption("This app predicts if a picture of a CXR is likely to be TB or not")
+uploaded_files = st.file_uploader("CXR Picture", accept_multiple_files=False, type=["jpg", "jpeg", "png"])
+if st.button("Upload File"):
+    stream = io.BytesIO(uploaded_files.getbuffer())
+    prob_of_tb, message = predict_image(model, stream)
