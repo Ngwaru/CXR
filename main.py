@@ -12,7 +12,7 @@ model_xray_or_not = models.load_model("cxr_or_not_vgg16_model.keras")
 def process_image(path_to_image):
     img = Image.open(path_to_image)
     img_one = img.convert("RGB")
-    img_two = img_one.resize((156,156))
+    img_two = img_one.resize((200,200))
     img_data = np.asarray(img_two)
     img_data_normalized = img_data/255
     return img_data_normalized
@@ -43,10 +43,22 @@ def predict_image(model, path_to_image):
         prob_of_tb = np.array([[0.0]])
         message = "This is not an X-ray"
         return prob_of_tb, message
+
+# def on_change(uploaded_files):
+#     stream = io.BytesIO(uploaded_files.getbuffer())
+#     prob_of_tb, message = predict_image(model, stream)
+#     st.image(stream)
+#     st.write(f"{message}")
     
 st.title("Normal vs TB CXR App")
 st.caption("This app predicts if a picture of a CXR is likely to be TB or not")
 uploaded_files = st.file_uploader("CXR Picture", accept_multiple_files=False, type=["jpg", "jpeg", "png"])
-if st.button("Upload File"):
+if st.button("Process Uploaded Picture"):
     stream = io.BytesIO(uploaded_files.getbuffer())
     prob_of_tb, message = predict_image(model, stream)
+    st.image(stream)
+    message_html = f"""<h2 style='taxt_align: center; color: blue; font-family: Ariel, Helvetica, sans-serif;' >{message}</h2>"""
+    prob_of_tb_html = f"""<h2 style='text-align: center; color: black; fonat-family: Ariel, Helvetica, dans-serif;'>{prob_of_tb[0][0]*100}% Probability of TB </h2>"""
+    st.markdown(message_html, unsafe_allow_html=True)
+    st.markdown(prob_of_tb_html, unsafe_allow_html=True)
+
