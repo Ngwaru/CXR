@@ -53,14 +53,20 @@ def predict_image(model, path_to_image):
 st.title("Normal vs TB CXR App")
 st.caption("This app predicts if a picture of a CXR is likely to be TB or not")
 uploaded_files = st.file_uploader("CXR Picture", accept_multiple_files=False, type=["jpg", "jpeg", "png"])
-if st.button("Process Uploaded Picture"):
-    stream = io.BytesIO(uploaded_files.getbuffer())
-    prob_of_tb, message = predict_image(model, stream)
-    prob_of_tb = int(prob_of_tb[0][0]*100)
-    print(type(prob_of_tb))
-    st.image(stream)
-    message_html = f"""<h2 style='text_align: center; color: blue; font-family: Ariel, Helvetica, sans-serif;'>{message}</h2>"""
-    prob_of_tb_html = f"""<h2 style='text-align: center; color: blue; fonat-family: Ariel, Helvetica, sans-serif;'>{prob_of_tb} % Probability of TB </h2>"""
-    st.markdown(message_html, unsafe_allow_html=True)
-    st.markdown(prob_of_tb_html, unsafe_allow_html=True)
+col_1, col_2, col_3 = st.columns(3)
+with col_1:
+    pass
+with col_3:
+    pass
+with col_2:
+    if st.button("Process Uploaded Picture"):
+        stream = io.BytesIO(uploaded_files.getbuffer())
+        prob_of_tb, message = predict_image(model, stream)
+        prob_of_tb = int(prob_of_tb[0][0]*100)
+        print(type(prob_of_tb))
+        st.image(stream)
+        message_html = f"""<h2 style='text_align: center; color: blue; font-family: Ariel, Helvetica, sans-serif;'>{message}</h2>"""
+        prob_of_tb_html = f"""<h3 style='text-align: center; color: blue; fonat-family: Ariel, Helvetica, sans-serif;'>{prob_of_tb} % Probability of TB </h3>"""
+        st.markdown(message_html, unsafe_allow_html=True)
+        st.markdown(prob_of_tb_html, unsafe_allow_html=True)
 
