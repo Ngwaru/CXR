@@ -50,7 +50,7 @@ def predict_image(model, path_to_image):
 #     st.image(stream)
 #     st.write(f"{message}")
     
-st.title("Normal vs TB CXR App")
+st.title("Detect TB on CXR App")
 st.caption("This app predicts if a picture of a CXR is likely to be TB or not")
 uploaded_files = st.file_uploader("CXR Picture", accept_multiple_files=False, type=["jpg", "jpeg", "png"])
 col_1, col_2, col_3 = st.columns(3)
