@@ -7,4 +7,4 @@ ADD logo.png .
 ADD placeholder.jpg .
 ADD requirements.txt .
 RUN pip install -r requirements.txt
-CMD ["streamlit", "run", "main.py"]
+CMD ["streamlit", "run", "main.py", "--server.fileWatcherType", "none"]
