@@ -7,16 +7,15 @@ import matplotlib.pyplot as plt
 import tensorflow as tf
 from tensorflow.keras.models import load_model
 
-model = load_model("cxr_normal_tb_vgg16_model.keras")
 
 
 class Grad_CAM_class():
-    def __init__(self, model, last_conv_layer_name, img_bytes, classes_names, size):
+    def __init__(self, model, last_conv_layer_name, img_bytes, classes_names):
         self.model = model
         self.last_conv_layer_name = last_conv_layer_name
         self.img_bytes = img_bytes
         self.classes_names = classes_names
-        self.size = size
+        # self.size = size
 
 
     def decode_predictions(self, preds):
@@ -67,5 +66,9 @@ class Grad_CAM_class():
         jet_heatmap = jet_heatmap.resize(self.img[1], self.img[0])
         jet_heatmap = keras.utils.img_to_array(jet_heatmap)
 
-        superimposed = jet_heatmap*alpha*self.img
+        superimposed_img = jet_heatmap*alpha*self.img
+        superimposed_img = keras.utils.array_to_img(superimposed_img)
+        superimposed_img.save(cam_path)
+        new_image = Image.open(cam_path)
+        new_image.show()
 
