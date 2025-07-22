@@ -7,25 +7,28 @@ import matplotlib.pyplot as plt
 import tensorflow as tf
 from tensorflow.keras.models import load_model
 
-
+preprocess_input = keras.applications.xception.preprocess_input
 
 class Grad_CAM_class():
-    def __init__(self, model, last_conv_layer_name, img_bytes, classes_names):
+    def __init__(self, model, last_conv_layer_name, img_path, classes_names, size):
         self.model = model
         self.last_conv_layer_name = last_conv_layer_name
-        self.img_bytes = img_bytes
+        # self.img_not_changed = keras.utils.array_to_img(img)
+        self.img_path = img_path
         self.classes_names = classes_names
-        # self.size = size
+        self.size = size
+        self.img_array = None
 
 
     def decode_predictions(self, preds):
         return self.classes_names[round(preds[0][0])]
     
+
     def get_img_array(self): 
-        img = io.BytesIO(self.img_bytes)
-        array = keras.utils.img_to_array(img)
-        array = np.expand_dims(array, axis=0)
-        return array
+        self.img = keras.utils.load_img(self.img_path, target_size=self.size)
+        self.img_array = keras.utils.img_to_array(self.img)
+        self.img_array  = np.expand_dims(self.img, axis=0)
+        return self.img_array 
     
     def make_gradcam_heatmap(self):
         grad_model = keras.models.Model(
@@ -33,14 +36,14 @@ class Grad_CAM_class():
         )
         pred_index = None
 
-        with tf.GradientTape as tape:
-            self.img = self.get_img_array()
-            last_conv_layer_output, preds = grad_model(self.img)
+        with tf.GradientTape() as tape:
+            # self.img = get_img_array(self)
+            last_conv_layer_output, preds = grad_model(preprocess_input(self.img_array))
             if pred_index is None:
                 pred_index = tf.argmax(preds[0])
             class_channel = preds[:, pred_index]
 
-        grads = tape.gradients(class_channel, last_conv_layer_output)
+        grads = tape.gradient(class_channel, last_conv_layer_output)
 
         pooled_grads = tf.reduce_mean(grads, axis=(0,1,2))
         last_conv_layer_output =last_conv_layer_output[0]
@@ -63,12 +66,13 @@ class Grad_CAM_class():
 
         jet_heatmap = jet_colors[self.new_heatmap]
         jet_heatmap = keras.utils.array_to_img(jet_heatmap)
-        jet_heatmap = jet_heatmap.resize(self.img[1], self.img[0])
+        jet_heatmap = jet_heatmap.resize((self.img_array.shape[1], self.img_array.shape[0]), resample=Image.Resampling.LANCZOS)
         jet_heatmap = keras.utils.img_to_array(jet_heatmap)
 
         superimposed_img = jet_heatmap*alpha*self.img
         superimposed_img = keras.utils.array_to_img(superimposed_img)
         superimposed_img.save(cam_path)
         new_image = Image.open(cam_path)
-        new_image.show()
+
+        return new_image
 
