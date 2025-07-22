@@ -4,6 +4,7 @@ from PIL import Image
 import numpy as np
 import streamlit as st
 from tensorflow.keras import models
+from GradCAM import Grad_CAM_class
 
 model = models.load_model("cxr_normal_tb_vgg16_model.keras")
 
@@ -44,6 +45,8 @@ def predict_image(model, path_to_image):
         message = "This is not an X-ray"
         return prob_of_tb, message
 
+
+
 # def on_change(uploaded_files):
 #     stream = io.BytesIO(uploaded_files.getbuffer())
 #     prob_of_tb, message = predict_image(model, stream)
@@ -64,7 +67,16 @@ with col_2:
         prob_of_tb, message = predict_image(model, stream)
         prob_of_tb = int(prob_of_tb[0][0]*100)
         print(type(prob_of_tb))
+        classes_names = {0:"Normal", 1:"Tuberculosis"}
         st.image(stream)
+        with open("temp_img.png", "wb") as pic:
+            pic.write(uploaded_files.getbuffer())
+        img_opened = process_image(stream)
+        grad_cam = Grad_CAM_class(model, "block5_conv4", "temp_img.png", classes_names, (200,200))
+        grad_cam.get_img_array()
+        grad_cam.make_gradcam_heatmap()
+        superimposed_img = grad_cam.save_and_display_gracam()
+        st.image(superimposed_img)
         message_html = f"""<h2 style='text_align: center; color: blue; font-family: Ariel, Helvetica, sans-serif;'>{message}</h2>"""
         prob_of_tb_html = f"""<h3 style='text-align: center; color: blue; fonat-family: Ariel, Helvetica, sans-serif;'>{prob_of_tb} % Probability of TB </h3>"""
         st.markdown(message_html, unsafe_allow_html=True)
