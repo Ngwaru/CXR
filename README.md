@@ -4,7 +4,7 @@
 
 
 
-**Getting Started** : For a quick start if you have docker running you can do a 
+**Getting Started** : For a quick start if you have docker running you can  
 - docker run ngwaru/cxr:0.1.6 (on command line)
 - Click on then ctrl + click the links provided
 - The site will load and then upload your CXR in png or jpeg format
