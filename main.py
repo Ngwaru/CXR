@@ -5,12 +5,21 @@ import numpy as np
 import streamlit as st
 from tensorflow.keras import models
 from GradCAM import Grad_CAM_class
+from typing import List, Tuple, Set, Any
 
 model = models.load_model("cxr_normal_tb_vgg16_model.keras")
 
 model_xray_or_not = models.load_model("cxr_or_not_vgg16_model.keras")
 
-def process_image(path_to_image):
+def process_image(path_to_image: str)->Any:
+    """
+    This function gets the image whose path is passed as a 
+    string and returns the normalized numpy array.
+    Parameters:
+        path_to_image: 'pic.jpg'
+    Returns:
+        img_data_normalized: 
+    """
     img = Image.open(path_to_image)
     img_one = img.convert("RGB")
     img_two = img_one.resize((200,200))
@@ -18,10 +27,17 @@ def process_image(path_to_image):
     img_data_normalized = img_data/255
     return img_data_normalized
 
-def is_xray_func(model, path_to_image):
+def is_xray_func(model: Any, path_to_image: str) -> bool:
+    """This function takes a tensorflow model and the path to the image 
+    it returns true if the picture is an X ray
+    Parameters:
+        model: model
+        path_to_image: "test_pic.png"
+    Returns:
+        bool: True
+    """
     img_data_normalized = process_image(path_to_image)
     xray = model.predict(np.asarray([img_data_normalized]))
-    print(xray)
     if xray > 0.5:
         return True
     else:
