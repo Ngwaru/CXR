@@ -43,7 +43,15 @@ def is_xray_func(model: Any, path_to_image: str) -> bool:
     else:
         return False
     
-def predict_image(model, path_to_image):
+def predict_image(model: Any, path_to_image: str)->tuple[List[List], str]:
+    """This function gets a tensorflow model and path to an image and 
+    returns a tuple with two compnents array and a string.
+    Parameters:
+        model: model
+        path_to_image: "test_pic.png"
+    Returns:
+        (tuple[list[list]], "This is not an X-ray")
+    """
     img_data_normalized = process_image(path_to_image)
     is_xray = is_xray_func(model_xray_or_not, path_to_image)
     if is_xray:
