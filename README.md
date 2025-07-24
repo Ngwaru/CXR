@@ -1,6 +1,6 @@
 **Title** : TB CXR Classification
 
-**Description** : Classifying CXR automatically for TB can help clinics and hospitals triage patients with patients with abnormal CXR being priotized. This is a web app based CXR classification AI model. It is based on a finetuned VGG16 on tensorflow library and uses taipy for the web interface GUI. The app also displays the Grad CAM out put of the model to show which pixels the model is using for the classification.
+**Description** : Classifying CXR automatically for TB can help clinics and hospitals triage patients with patients with abnormal CXR being priotized. This is a web app based CXR classification AI model. It is based on a finetuned VGG16 on tensorflow library and uses streamlit for the web interface GUI. The app also displays the Grad CAM out put of the model to show which pixels the model is using for the classification.
 
 
 
