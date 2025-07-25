@@ -101,8 +101,8 @@ with col_2:
         grad_cam.make_gradcam_heatmap()
         superimposed_img = grad_cam.save_and_display_gracam()
         st.image(superimposed_img)
-        message_html = f"""<h2 style='text_align: center; color: blue; font-family: Ariel, Helvetica, sans-serif;'>{message}</h2>"""
-        prob_of_tb_html = f"""<h3 style='text-align: center; color: blue; fonat-family: Ariel, Helvetica, sans-serif;'>{prob_of_tb} % Probability of TB </h3>"""
+        message_html = f"""<h4 style='text_align: center; color: blue; font-family: Ariel, Helvetica, sans-serif;'>{message}</h4>"""
+        prob_of_tb_html = f"""<h4 style='text-align: center; color: blue; fonat-family: Ariel, Helvetica, sans-serif;'>{prob_of_tb} % Probability of TB </h4>"""
         st.markdown(message_html, unsafe_allow_html=True)
         st.markdown(prob_of_tb_html, unsafe_allow_html=True)
 
