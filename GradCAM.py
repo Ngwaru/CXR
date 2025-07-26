@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 import tensorflow as tf
 from tensorflow.keras.models import load_model
 
-preprocess_input = keras.applications.preprocess_input
+preprocess_input = keras.applications.xception.preprocess_input
 
 class Grad_CAM_class():
     def __init__(self, model, last_conv_layer_name, img_path, classes_names, size):
