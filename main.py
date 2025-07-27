@@ -92,7 +92,7 @@ if st.button("Process Uploaded Picture"):
     prob_of_tb = int(prob_of_tb[0][0]*100)
     print(type(prob_of_tb))
     classes_names = {0:"Normal", 1:"Tuberculosis"}
-    st.image(stream)
+    st.image(stream, use_container_width=True)
     with open("temp_img.png", "wb") as pic:
         pic.write(uploaded_files.getbuffer())
     img_opened = process_image(stream, (324,324))
@@ -100,7 +100,7 @@ if st.button("Process Uploaded Picture"):
     grad_cam.get_img_array()
     grad_cam.make_gradcam_heatmap()
     superimposed_img = grad_cam.save_and_display_gracam()
-    st.image(superimposed_img)
+    st.image(superimposed_img, use_container_width=True)
     message_html = f"""<h4 style='text-align: center; color: blue; font-family: Ariel, Helvetica, sans-serif;'>{message}</h4>"""
     prob_of_tb_html = f"""<h4 style='text-align: center; color: blue; fonat-family: Ariel, Helvetica, sans-serif;'>{prob_of_tb} % Probability of TB </h4>"""
     st.markdown(message_html, unsafe_allow_html=True)
