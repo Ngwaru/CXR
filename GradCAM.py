@@ -27,9 +27,9 @@ class Grad_CAM_class():
     def get_img_array(self): 
         self.img = keras.utils.load_img(self.img_path, target_size=self.size)
         self.img_array = keras.utils.img_to_array(self.img)
-        self.img_array  = np.expand_dims(self.img, axis=0)
+        self.img_array_expanded  = np.expand_dims(self.img_array, axis=0)
         return self.img_array 
-    
+       
     def make_gradcam_heatmap(self):
         grad_model = keras.models.Model(
             self.model.inputs, [self.model.get_layer(self.last_conv_layer_name).output, self.model.output]
@@ -38,7 +38,7 @@ class Grad_CAM_class():
 
         with tf.GradientTape() as tape:
             # self.img = get_img_array(self)
-            last_conv_layer_output, preds = grad_model(preprocess_input(self.img_array))
+            last_conv_layer_output, preds = grad_model(preprocess_input(self.img_array_expanded))
             if pred_index is None:
                 pred_index = tf.argmax(preds[0])
             class_channel = preds[:, pred_index]
@@ -46,7 +46,7 @@ class Grad_CAM_class():
         grads = tape.gradient(class_channel, last_conv_layer_output)
 
         pooled_grads = tf.reduce_mean(grads, axis=(0,1,2))
-        last_conv_layer_output =last_conv_layer_output[0]
+        last_conv_layer_output = last_conv_layer_output[0]
 
         self.heatmap = last_conv_layer_output@pooled_grads[..., tf.newaxis]
         self.heatmap = tf.squeeze(self.heatmap)
