@@ -76,8 +76,23 @@ def predict_image(model: Any, path_to_image: str)->tuple[List[List], str]:
 #     prob_of_tb, message = predict_image(model, stream)
 #     st.image(stream)
 #     st.write(f"{message}")
-    
+
+page_element = """
+<style>
+[data-testid="stAppViewContainer"]{
+    background-image: url("vackground-com-agUC-v_D1iI-unsplash.jpg");
+    background-size: cover;
+}
+</style>
+"""
+
+
+
+#Photo by <a href="https://unsplash.com/@vackground?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">vackground.com</a> on <a href="https://unsplash.com/photos/a-blue-and-pink-abstract-background-with-wavy-lines-agUC-v_D1iI?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+      
+st.markdown(page_element, unsafe_allow_html=True)
 st.title("Detect TB on CXR App")
+
 st.caption("This app predicts if a picture of a CXR is likely to be TB or not")
 uploaded_files = st.file_uploader("CXR Picture", accept_multiple_files=False, type=["jpg", "jpeg", "png"])
 # col_1, col_2, col_3 = st.columns(3)
