@@ -7,5 +7,6 @@ ADD cxr_or_not_vgg16_model.keras .
 ADD logo.png .
 ADD placeholder.jpg .
 ADD requirements.txt .
+ADD vackground-com-agUC-v_D1iI-unsplash.jpg .
 RUN pip install -r requirements.txt
 CMD ["streamlit", "run", "main.py", "--server.fileWatcherType", "none"]
