@@ -3,17 +3,19 @@ from torch.utils.data import Dataset
 import pandas as pd
 import numpy as np
 import os
-from skimage import io
+import cv2
 
-def write_csv(root_folder):
+def get_df_from_files(root_folder):
     df = pd.DataFrame()
     file_names = []
     labels = []
     label_names = []
     for idx, label_folder in enumerate(os.listdir(root_folder)):
-        file_names.extend(os.listdir(label_folder))
-        labels.append(idx)
-        label_names.append(label_folder)
+        list_cur_files = os.listdir(os.path.join(root_folder, label_folder))
+        file_names.extend(list_cur_files)
+        labels.extend(list(np.repeat([idx], len(list_cur_files))))
+        print(idx)
+        label_names.extend(list(np.repeat([label_folder], len(list_cur_files))))
     df['file'] = file_names
     df['lables'] = labels
     df['label_name'] = label_names
@@ -23,7 +25,7 @@ def write_csv(root_folder):
 
 class Custom_Image_Dataset(Dataset):
     def __init__(self, root_dir, transform=None):
-        self.annotations = write_csv(root_dir)
+        self.annotations = get_df_from_files(root_dir)
         self.root_dir = root_dir
         self.transform = transform
 
@@ -33,7 +35,7 @@ class Custom_Image_Dataset(Dataset):
     def __getitem__(self, idx):
         class_path = os.path.join(self.root_dir, self.annotations.iloc[idx, 2])
         file_path = os.path.join(class_path, self.annotations.iloc[idx, 0])
-        img = io.imread(file_path)
+        img = cv2.imread(file_path)
         y_label = torch.tensor(int(self.annotations.iloc[idx,1]))
 
         if self.transform:
