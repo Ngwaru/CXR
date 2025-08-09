@@ -1,5 +1,6 @@
 import torch
 from torch.utils.data import Dataset
+from torchvision.transforms import transforms
 import pandas as pd
 import numpy as np
 import os
@@ -38,8 +39,9 @@ class Custom_Image_Dataset(Dataset):
         image = cv2.imread(file_path)
         y_label = torch.tensor(int(self.annotations.iloc[idx,1]))
 
-        if self.transform:
-            image =self.transform(image)
+        
+        image = torch.tensor(image).float()
+        image = image.permute(2,0,1)
         return (image, y_label)
 
 
