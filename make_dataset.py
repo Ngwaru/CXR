@@ -35,7 +35,7 @@ class Custom_Image_Dataset(Dataset):
     def __getitem__(self, idx):
         class_path = os.path.join(self.root_dir, self.annotations.iloc[idx, 2])
         file_path = os.path.join(class_path, self.annotations.iloc[idx, 0])
-        img = cv2.imread(file_path)
+        image = cv2.imread(file_path)
         y_label = torch.tensor(int(self.annotations.iloc[idx,1]))
 
         if self.transform:
