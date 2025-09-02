@@ -11,3 +11,10 @@
 - Click the process image button
 - Scroll down to see the results
 
+**Motivation**
+
+**Approach**
+
+**Results**
+
+
