@@ -14,7 +14,9 @@ For a quick start if you have docker running you can
 - Scroll down to see the results
 
 ## **Motivation**
+Tuberculosis (TB) remains one of the leading causes of death from infectious disease globally, especially in low-resource settings. Early detection is critical for effective treatment and to prevent the spread of the disease. Chest X-rays (CXR) are commonly used for TB screening, but interpreting them requires trained radiologists, who may not always be available—particularly in rural or under-resourced areas.
 
+The goal of this project is to develop a lightweight, accessible, and interpretable AI tool that can assist in the preliminary screening of TB from chest X-rays. By automating this step, healthcare providers can prioritize patients with abnormal findings, reduce diagnostic delays, and better allocate medical resources. The integration with a web interface ensures the tool is easy to deploy and use in real-world clinical environments.
 ## **Approach**
 
 ## **Results**
