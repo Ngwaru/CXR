@@ -18,7 +18,13 @@ Tuberculosis (TB) remains one of the leading causes of death from infectious dis
 
 The goal of this project is to develop a lightweight, accessible, and interpretable AI tool that can assist in the preliminary screening of TB from chest X-rays. By automating this step, healthcare providers can prioritize patients with abnormal findings, reduce diagnostic delays, and better allocate medical resources. The integration with a web interface ensures the tool is easy to deploy and use in real-world clinical environments.
 ## **Approach**
+This project uses a fine-tuned VGG19 convolutional neural network for binary classification of chest X-rays into TB-positive and normal categories. The model is implemented using TensorFlow and trained on a publicly available CXR dataset with appropriate augmentation to enhance generalization.
 
+To enhance trust and interpretability, Grad-CAM (Gradient-weighted Class Activation Mapping) is employed to highlight the regions of the image that most influenced the model's decision. This provides visual feedback to clinicians and users on what part of the lung the AI focused on during classification.
+
+For accessibility and ease of use, the model is wrapped in a Streamlit web application that allows users to upload images, run inference, and view both the prediction and the corresponding Grad-CAM visualization. A prebuilt Docker image is also provided to simplify deployment.
+
+Let me know if you'd like help adding a "Limitations", "Future Work", or "References" section too.
 ## **Results**
 
 
