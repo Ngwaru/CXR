@@ -23,8 +23,6 @@ This project uses a fine-tuned VGG19 convolutional neural network for binary cla
 To enhance trust and interpretability, Grad-CAM (Gradient-weighted Class Activation Mapping) is employed to highlight the regions of the image that most influenced the model's decision. This provides visual feedback to clinicians and users on what part of the lung the AI focused on during classification.
 
 For accessibility and ease of use, the model is wrapped in a Streamlit web application that allows users to upload images, run inference, and view both the prediction and the corresponding Grad-CAM visualization. A prebuilt Docker image is also provided to simplify deployment.
-
-Let me know if you'd like help adding a "Limitations", "Future Work", or "References" section too.
 ## **Results**
 
 
