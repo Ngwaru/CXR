@@ -23,9 +23,20 @@ This project uses a fine-tuned VGG19 convolutional neural network for binary cla
 To enhance trust and interpretability, Grad-CAM (Gradient-weighted Class Activation Mapping) is employed to highlight the regions of the image that most influenced the model's decision. This provides visual feedback to clinicians and users on what part of the lung the AI focused on during classification.
 
 For accessibility and ease of use, the model is wrapped in a Streamlit web application that allows users to upload images, run inference, and view both the prediction and the corresponding Grad-CAM visualization. A prebuilt Docker image is also provided to simplify deployment.
-## **Training and Dataset**
+## **Dataset Overview**
+The dataset includes both Tuberculosis (TB) positive and Normal chest X-ray images:
+- 700 TB-positive images: Publicly accessible in this release.
+- 2800 TB-positive images: Available for download via the NIAID TB portal upon signing a data use agreement.
+- 3500 Normal images: Included for comparative analysis.
+This dataset is intended to support research in medical imaging, machine learning, and automated TB detection.
+
+## **Training**
 
 ## **Results**
 
 
 <img width="1003" height="683" alt="Screenshot 2025-09-23 230738" src="https://github.com/user-attachments/assets/29650faa-2214-4a09-82c6-9f026af791f8" />
+## **References** 
+
+1. Tawsifur Rahman, Amith Khandakar, Muhammad A. Kadir, Khandaker R. Islam, Khandaker F. Islam, Zaid B. Mahbub, Mohamed Arselene Ayari, Muhammad E. H. Chowdhury. (2020) "Reliable Tuberculosis Detection using Chest X-ray with Deep Learning, Segmentation and Visualization". IEEE Access, Vol. 8, pp 191586 - 191601. DOI. 10.1109/ACCESS.2020.3031384
+2. 
