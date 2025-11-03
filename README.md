@@ -49,7 +49,7 @@ This setup enables robust classification performance while leveraging the expres
 <img width="744" height="578" alt="image" src="https://github.com/user-attachments/assets/fe5bf1b8-203d-4630-9a81-138f33ae847a" />
 
 
-<img width="1003" height="683" alt="Screenshot 2025-09-23 230738" src="https://github.com/user-attachments/assets/29650faa-2214-4a09-82c6-9f026af791f8" />
+<img width="744" height="578" alt="Screenshot 2025-09-23 230738" src="https://github.com/user-attachments/assets/29650faa-2214-4a09-82c6-9f026af791f8" />
 
 
 ## **References** 
