@@ -36,6 +36,8 @@ This dataset is intended to support research in medical imaging, machine learnin
 
 
 <img width="1003" height="683" alt="Screenshot 2025-09-23 230738" src="https://github.com/user-attachments/assets/29650faa-2214-4a09-82c6-9f026af791f8" />
+
+
 ## **References** 
 
 1. Tawsifur Rahman, Amith Khandakar, Muhammad A. Kadir, Khandaker R. Islam, Khandaker F. Islam, Zaid B. Mahbub, Mohamed Arselene Ayari, Muhammad E. H. Chowdhury. (2020) "Reliable Tuberculosis Detection using Chest X-ray with Deep Learning, Segmentation and Visualization". IEEE Access, Vol. 8, pp 191586 - 191601. DOI. 10.1109/ACCESS.2020.3031384
