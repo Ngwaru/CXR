@@ -30,6 +30,20 @@ The dataset includes both Tuberculosis (TB) positive and Normal chest X-ray imag
 This dataset is intended to support research in medical imaging, machine learning, and automated TB detection.
 
 ## **Training**
+This project employs a fine-tuned VGG19 convolutional neural network for binary classification of chest X-ray (CXR) images into TB-positive and Normal categories.
+Training Details
+- Architecture: VGG19, pre-trained on ImageNet and fine-tuned for medical image classification.
+- Framework: Implemented using TensorFlow.
+- Dataset: Publicly available chest X-ray dataset containing TB-positive and Normal images.
+- Preprocessing:
+- Image resizing and normalization
+- Training Strategy:
+- Transfer learning with frozen base layers initially
+- Binary cross-entropy loss with Adam optimizer
+Evaluation:
+- Accuracy, precision, recall, and AUC metrics used to assess performance
+- Validation split applied to monitor overfitting
+This setup enables robust classification performance while leveraging the expressive power of deep convolutional features.
 
 ## **Results**
 
