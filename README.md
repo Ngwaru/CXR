@@ -26,7 +26,6 @@ For accessibility and ease of use, the model is wrapped in a Streamlit web appli
 ## **Dataset Overview**
 The dataset includes both Tuberculosis (TB) positive and Normal chest X-ray images:
 - 700 TB-positive images: Publicly accessible in this release.
-- 2800 TB-positive images: Available for download via the NIAID TB portal upon signing a data use agreement.
 - 3500 Normal images: Included for comparative analysis.
 This dataset is intended to support research in medical imaging, machine learning, and automated TB detection.
 
