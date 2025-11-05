@@ -50,6 +50,8 @@ This setup enables robust classification performance while leveraging the expres
 
 
 <img width="744" height="578" alt="Screenshot 2025-09-23 230738" src="https://github.com/user-attachments/assets/29650faa-2214-4a09-82c6-9f026af791f8" />
+
+
 ## **Explanations with GradCAM**
 
 A review of some of the gradCAM images heatmaps showed that there is data leak possibly from the image processing done on the two classes. As shown in the image below information from the image's edge is used for classification and some of the processing done to anonymize the image is also used to classify the image. This make me think maybe gradCAM can be used to identify data leaks in image datasets
