@@ -54,7 +54,7 @@ This setup enables robust classification performance while leveraging the expres
 
 ## **Explanations with GradCAM**
 
-A review of some of the gradCAM images heatmaps showed that there is data leak possibly from the image processing done on the two classes. This includes image cropping and masking patients details and CXR labels. As shown in the image below information from the image's edge is used for classification and some of the processing done to anonymize the image is also used to classify the image. This make me think maybe gradCAM can be used to identify data leaks in image datasets
+A review of some of the gradCAM images heatmaps showed that there is data leak possibly from the image processing done on the two classes. This includes image cropping and masking patients details and CXR labels. As shown in the image below information from the image's edge is used for classification and some of the processing done to anonymize the image is also used to classify the image. This shows that this dataset is not adequate to train a model to be used for production purposes. I also realise the potential of gradCAM to be used to identify data leaks in image datasets.
 
 <img width="665" height="662" alt="image" src="https://github.com/user-attachments/assets/7870a03c-3e82-4e22-9277-2d3207f35772" />
 
